@@ -1,10 +1,6 @@
 /*
 Assignment: Homework Chapter 6
---Short Description: 
---Course: CMSC246
---Student: Nebil Sherif
---Professor G Grinberg
---Due Date: 02/25
+
 */
 
 /*1.Write a SELECT statement that returns the same result set as this SELECT statement, but don’t use a join. Instead, use a subquery in a WHERE clause that uses the IN keyword.*/
@@ -21,12 +17,7 @@ WHERE
     )
 ORDER BY
     category_name;
-    
-    /*
-Basses
-Drums
-Guitars*/
-    
+        
     
 
 /*2.Write a SELECT statement that answers this question: Which products have a list price that’s greater than the average list price for all products?*/
@@ -46,10 +37,7 @@ WHERE
 ORDER BY
     list_price DESC;
     
-    /*
-Gibson SG	2517
-Gibson Les Paul	1199
-*/
+
 
 /*3.	Write a SELECT statement that returns the category_name column from the Categories table*/
 
@@ -66,7 +54,6 @@ WHERE
         WHERE
             category_id = categories.category_id
     );
-    /*Keyboards*/
 
 /*4.Write a SELECT statement that returns three columns: email_address, order_id, and the order total for each customer. To do this, you can group the result set by the email_address and order_id columns. In addition, you must calculate the order total from the columns in the Order_Items table.
 Write a second SELECT statement that uses the first SELECT statement in its FROM clause. The main query should return two columns: the customer’s email address and the largest order for that customer. To do this, you can group the result set by the email_address.
@@ -83,16 +70,7 @@ FROM
 GROUP BY
     c.email_address,
     o.order_id;
-    /*
-allan.sherwood@yahoo.com	1	839.3
-allan.sherwood@yahoo.com	3	1461.31
-barryz@gmail.com	2	303.79
-christineb@solarone.com	4	1678.6
-david.goldstein@hotmail.com	5	299
-david.goldstein@hotmail.com	9	489.3
-erinv@gmail.com	6	299
-frankwilson@sbcglobal.net	7	1539.28
-gary_hernandez@yahoo.com	8	679.99*/
+  
     
 
 SELECT
@@ -135,14 +113,7 @@ FROM
             o.order_id
     ) t_3 ON t_3.email_address = t_2.email_address
              AND t_3.order_total = t_2.max_order;
-             
-/*allan.sherwood@yahoo.com	3	1461.31
-barryz@gmail.com	2	303.79
-christineb@solarone.com	4	1678.6
-david.goldstein@hotmail.com	9	489.3
-erinv@gmail.com	6	299
-frankwilson@sbcglobal.net	7	1539.28
-gary_hernandez@yahoo.com	8	679.99*/
+
 
 /*5.	Write a SELECT statement that returns the name and discount percent of each product that has a unique discount percent. In other words, don’t include products that have the same discount percent as another product.*/
 
@@ -158,12 +129,7 @@ JOIN (
 ON p.discount_percent = unique_discounts.discount_percent
 ORDER BY p.product_name;
 
-/*Gibson SG	52
-Hofner Icon	25
-Rodriguez Caballero 11	39
-Tama 5-Piece Drum Set with Cymbals	15
-Washburn D10S	0
-Yamaha FG700S	38*/
+
 
 
 /*6.Use a correlated subquery to return one row per customer, representing the customer’s oldest order (the one with the earliest date). Each row should include these three columns: email_address, order_id, and order_date.*/
@@ -184,10 +150,4 @@ WHERE
         GROUP BY
             o.customer_id
     );
-/*frankwilson@sbcglobal.net	7	01-APR-12
-allan.sherwood@yahoo.com	1	28-MAR-12
-gary_hernandez@yahoo.com	8	02-APR-12
-barryz@gmail.com	2	28-MAR-12
-david.goldstein@hotmail.com	5	31-MAR-12
-erinv@gmail.com	6	31-MAR-12
-christineb@solarone.com	4	30-MAR-12*/
+
