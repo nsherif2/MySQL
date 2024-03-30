@@ -1,0 +1,92 @@
+/*
+Assignment: Homework Chapter 7 Part 2
+Assignemtn description: This assignment involves SQL operations on the Categories and Products tables within a database. Initially, an INSERT statement is crafted to add a new row to the Categories table with a specified category ID and name. Subsequently, an UPDATE statement is written to modify the newly added row in the Categories table, changing the category name to "Woodwinds". Following this, a DELETE statement is executed to remove the added row from the Categories table. Next, an INSERT statement is formulated to add a new product to the Products table with specific details including product ID, category ID, product code, name, description, price, and discount percentage. An UPDATE statement is then composed to modify the discount percentage of the product added in the previous step from 0% to 35%. Lastly, a DELETE statement is devised to delete a category from the Categories table, but as this category has related rows in the Products table, a preceding DELETE statement is included to remove all products associated with this category to avoid errors during deletion.
+Course: CMSC246
+Student: Nebil Sherif
+Instructor: Professor G Grinberg
+Due Date:3/3/2024
+*/
+
+-- 1. INSERT statement to add a row to Categories table
+INSERT INTO Categories (category_id, category_name)
+VALUES (5, 'Brass');
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Categories;
+
+-- 2. UPDATE statement to modify the added row in Categories table
+UPDATE Categories
+SET category_name = 'Woodwinds'
+WHERE category_id = 5;
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Categories;
+
+-- 3. DELETE statement to delete the added row in Categories table
+DELETE FROM Categories
+WHERE category_id = 5;
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Categories;
+
+-- 4. INSERT statement to add a row to Products table
+INSERT INTO Products (product_id, category_id, product_code, product_name, description, list_price, discount_percent, date_added)
+VALUES (11, 4, 'dgx_640', 'Yamaha DGX 640 88-Key Digital Piano', 'Long description to come.', 799.99, 0, CURRENT_TIMESTAMP);
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Products;
+
+-- 5. UPDATE statement to modify the discount_percent for the product added in exercise 4
+UPDATE Products
+SET discount_percent = 35
+WHERE product_id = 11;
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Products;
+
+-- 6. DELETE statement to delete the category with category_id = 4 from Categories table
+-- (Note: This will produce an error due to related rows in Products table)
+
+-- Fix the error by deleting related rows in Products table first
+DELETE FROM Products
+WHERE category_id = 4;
+COMMIT;
+
+-- Then delete the category from Categories table
+DELETE FROM Categories
+WHERE category_id = 4;
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Categories;
+
+-- 7. INSERT statement to add a row to Customers table
+INSERT INTO Customers (customer_id, email_address, password, first_name, last_name)
+VALUES (9, 'rick@raven.com', 'sesame', 'Rick', 'Raven');
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Customers;
+
+-- 8. UPDATE statement to modify the password for the customer with email rick@raven.com
+UPDATE Customers
+SET password = 'secret'
+WHERE email_address = 'rick@raven.com';
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Customers;
+
+-- 9. UPDATE statement to modify the password column for all customers in the Customers table
+UPDATE Customers
+SET password = 'reset';
+COMMIT;
+
+-- SELECT statement to verify the changes
+SELECT * FROM Customers;
+
